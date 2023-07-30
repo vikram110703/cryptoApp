@@ -33,23 +33,24 @@ const Coins = () => {
     };
     fetchCoins();
 
-  }, [ currency,page]);
+  }, [currency, page]);
 
   if (error) return <Error_show message={"Error while fetching Coins data "} />;
 
-  return <Container maxW={"container.lg"} >
+  return <Container maxW={"container.xl"} >
 
     {loading ? <Loader /> :
       <>
-       <RadioGroup p={'4'} value={currency} onChange={setCurrency} >
-        <HStack spacing={"2"} >
-        <Radio value='inr' >INR</Radio>
-        <Radio value='eur' >EUR</Radio>
-        <Radio value='usd' >USD</Radio>
-        </HStack>
-       </RadioGroup>
+        <RadioGroup p={'2rem'} value={currency} onChange={setCurrency}  >
+          <HStack spacing={"1rem"} >
+            <Radio value='inr' size={"lg"} >INR</Radio>
+            <Radio value='eur' size={"lg"} >EUR</Radio>
+            <Radio value='usd' size={"lg"} >USD</Radio>
+          </HStack>
+        </RadioGroup>
 
-        <HStack dir='row' wrap={"wrap"} >
+        <HStack dir='row' wrap={"wrap"} justifyContent={["space-evenly", "center"]}
+          alignItems={"center"} >
           {
             coins.map((i) => (
               <CoinsCard
@@ -68,12 +69,16 @@ const Coins = () => {
         <HStack overflowX={'scroll'} w={"full"} p={'8'}>
           {
             btns.map((item, index) => (
-
               <Button bgColor={'blackAlpha.800'} color='white'
-                onClick={() => { setPage(index + 1); setLoading(true) }}  >
-
+                onClick={() => { setPage(index + 1); setLoading(true) }} size={"lg"}
+                css={{
+                  "&:hover": {
+                    bgColor:"white",color:"black",fontWeight:"bold"
+                  },
+                }
+                }
+              >
                 {index + 1}
-
               </Button>
             ))
           }
@@ -90,8 +95,8 @@ export default Coins;
 const CoinsCard = ({ id, name, img, symbol, price, currencySymbol = "₹" }) => {
   return (
     <Link to={`/coin/${id}`} >
-      <VStack w={"52"} p={"7"}  shadow={"lg"} borderRadius={"lg"} 
-      transition={"all 0.3s"} m={"4"}
+      <VStack w={["10rem", "21rem"]} p={["2rem", "3rem"]} shadow={"lg"} borderRadius={"lg"}
+        transition={"all 0.3s"} m={"4"}
         css={{
           "&:hover": {
             transform: "scale(1.1)"
@@ -100,12 +105,12 @@ const CoinsCard = ({ id, name, img, symbol, price, currencySymbol = "₹" }) => 
         }
 
       >
-        <Image src={img} w={"10"} h={"10"} objectFit={"contain"} alt={"Exchange"} />
-        <Heading size={"md"} noOfLines={1} >
+        <Image src={img} w={["3rem", "5rem"]} h={["3rem", "5rem"]} objectFit={"contain"} alt={"Exchange"} />
+        <Heading size={["sm", "md"]} noOfLines={1} >
           {symbol}
         </Heading>
-        <Text noOfLines={1} >{name}</Text>
-        <Text fontSize={"md"} > {price ? `${currencySymbol}${price}` : "NA"}</Text>
+        <Text fontSize={["lg", "xl"]} fontWeight={"medium"} noOfLines={1} >{name}</Text>
+        <Text fontSize={["lg", "xl"]} fontWeight={"medium"} > {price ? `${currencySymbol}${price}` : "NA"}</Text>
 
       </VStack>
     </Link>

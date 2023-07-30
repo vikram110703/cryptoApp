@@ -66,7 +66,7 @@ const CoinDetails = () => {
     };
     fetchCoin();
 
-  },[ params.id, currency, days]);
+  }, [params.id, currency, days]);
 
   if (error) return <Error_show message={"Error while fetching Coin data "} />;
   return (
@@ -77,13 +77,13 @@ const CoinDetails = () => {
           loading ? <Loader /> : (
             <>
               <Box width={"full"} borderwith={1} px={"20"} display={"flex"} justifyContent={"center"} >
-                <Chart currency={currencySymbol} days={days} arr={chartArray}  />
+                <Chart currency={currencySymbol} days={days} arr={chartArray} />
               </Box>
 
               <HStack p={"4"} wrap={"wrap"} alignItems={"center"} justifyContent={"center"} >
                 {
                   btns.map((i) => (
-                    <Button disabled={days===i} key={i} onClick={() => switchChartStats(i)} >{i}</Button>
+                    <Button disabled={days === i} size={"lg"} fontSize={["1rem", "1.5rem"]} key={i} onClick={() => switchChartStats(i)} >{i}</Button>
                   ))
 
                 }
@@ -92,28 +92,28 @@ const CoinDetails = () => {
 
               <RadioGroup p={'4'} marginBottom={"4"} value={currency} onChange={setCurrency} >
                 <HStack spacing={"2"} justifyContent={"center"} >
-                  <Radio value='inr' >INR</Radio>
-                  <Radio value='eur' >EUR</Radio>
-                  <Radio value='usd' >USD</Radio>
+                  <Radio value='inr' size={"lg"} >INR</Radio>
+                  <Radio value='eur' size={"lg"}  >EUR</Radio>
+                  <Radio value='usd' size={"lg"}  >USD</Radio>
                 </HStack>
               </RadioGroup>
 
               <VStack spacing={"4"} justifyContent={"center"} alignItems={"flex-start"} mx={"10"} >
 
-                <Text alignSelf={"center"} >
+                <Text alignSelf={"center"} fontSize={["1rem", "1.5rem"]} >
                   Last Updated on {"  "} {Date(coin.market_data.last_updated).split('G')[0]}
                 </Text>
 
-                <Image src={coin.image.large} w='16' h='16' objectFit={'contain'}  />
+                <Image src={coin.image.large} w={["5rem", "8rem"]} h={["5rem", "8rem"]} objectFit={'contain'} />
 
                 <Stat>
-                  <StatLabel>{coin.name}</StatLabel>
-                  <StatNumber>
+                  <StatLabel fontSize={["0.9rem", "1.2rem"]} >{coin.name}</StatLabel>
+                  <StatNumber ontSize={["0.9rem", "1.2rem"]}>
                     {currencySymbol}{coin.market_data.current_price[currency]}
                   </StatNumber>
-                  <StatHelpText>
+                  <StatHelpText fontSize={["0.8rem", "1rem"]}>
                     <StatArrow
-                      type={coin.market_data.price_change_percentage_24h >= 0 ? "increase" : "decrease"} />
+                      type={coin.market_data.price_change_percentage_24h >= 0 ? "increase" : "decrease"} w={"1.2rem"} h={"1.2rem"} />
                     {coin.market_data.price_change_percentage_24h}%
                   </StatHelpText>
                 </Stat>
@@ -154,20 +154,27 @@ export default CoinDetails;
 const CustomBar = ({ curr, low, high, currencySymbol }) => (
   <VStack w="full">
 
-    <Progress value={`${(high - low) - (high - curr)}`} colorScheme={"teal"} w="full" />
+    <Progress value={`${(high - low) - (high - curr)}`} colorScheme={"teal"} w="full" h={["1.3rem", "2rem"]} />
     <HStack justifyContent={"space-between"} w="full" >
-      <Badge children={`${currencySymbol}${low}`} colorScheme='red' />
-      <Text fontSize={"sm"} >24hr Range `</Text>
-      <Badge children={`${currencySymbol}${high}`} colorScheme='green' />
+      <Badge fontSize={["0.8rem", "1rem"]} children={`${currencySymbol}${low}`} colorScheme='red' />
+      <Text fontSize={["0.9rem", "1.2rem"]} >24hr Range `</Text>
+      <Badge fontSize={["0.8rem", "1rem"]} children={`${currencySymbol}${high}`} colorScheme='green' />
     </HStack>
 
   </VStack>
 );
-
+ 
 const Item = ({ title, value }) => (
-  <HStack justifyContent={"space-between"} w="full" my={"4"}  >
-    <Text fontFamily={'sans-serif'} letterSpacing={"wide"} fontWeight={"bold"} mx={"0"} >{title}</Text>
-    <Text fontWeight={"medium"} mx={"5"} >{value}</Text>
+  <HStack justifyContent={"space-between"} w="full" my={"0.5rem"} p={["0.5rem", "1rem"]}
+    css={{
+      "&:hover": {
+        border: "1px solid black"
+      },
+    }
+    }
+  >
+    <Text fontSize={["0.8rem", "1.3rem"]} fontFamily={'sans-serif'} letterSpacing={"wide"} fontWeight={"bold"} mx={"0"} >{title}</Text>
+    <Text fontSize={["0.8rem", "1.3rem"]} fontWeight={"medium"} mx={"5"} >{value}</Text>
   </HStack>
 
 );

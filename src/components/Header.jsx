@@ -3,15 +3,15 @@ import React from 'react'
 import {Link}from "react-router-dom"
 
 const Header = () => {
-  return <HStack p={"4"} shadow={"base"} bgColor={"blackAlpha.900"} >
+  return <HStack p={"5"} shadow={"base"} bgColor={"blackAlpha.900"} >
 
-    <Button variant={"unstyled"} color={"white"} >
+    <Button variant={"unstyled"} color={"white"} fontSize={["1.3rem","1.7rem"]}  >
         <Link to='/'>Home</Link>
     </Button>
-    <Button variant={"unstyled"} color={"white"} >
+    <Button variant={"unstyled"} color={"white"} fontSize={["1.3rem","1.7rem"]} marginInlineStart={"1rem"} >
         <Link to='/exchanges'>Exhchanges</Link>
     </Button>
-    <Button variant={"unstyled"} color={"white"} >
+    <Button variant={"unstyled"} color={"white"} fontSize={["1.3rem","1.7rem"]} marginInlineStart={"1rem"} >
         <Link to='/coins'>Coins</Link>
     </Button>
 
