@@ -6,21 +6,22 @@ import Coins from "./components/Coins";
 import Exchanges from "./components/Exchanges";
 import CoinDetails from "./components/CoinDetails";
 import Footer from "./components/Footer";
+import './styles/app.scss';
 
 
 function App() {
   return <Router>
-    <Header/>
+    <Header />
 
     <Routes>
 
-      <Route path="/"element={<Home/>} />
-      <Route path="/coins"element={<Coins/>} />
-      <Route path="/coin/:id"element={<CoinDetails/>}   />
-      <Route path="/exchanges"element={<Exchanges/>}   />
+      <Route path="/" element={<Home />} />
+      <Route path="/coins" element={<Coins />} />
+      <Route path="/coin/:id" element={<CoinDetails />} />
+      <Route path="/exchanges" element={<Exchanges />} />
     </Routes>
 
-    <Footer/>
+    <Footer />
   </Router>
 }
 
